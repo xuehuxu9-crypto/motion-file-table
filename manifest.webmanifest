@@ -1,0 +1,13 @@
+{
+  "name": "动作数据识别表",
+  "short_name": "动作识别表",
+  "description": "BVH、PKL、GZ、ZIP 动作数据浏览器本地识别工具",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f4f6f1",
+  "theme_color": "#17211b",
+  "icons": [
+    {"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable"}
+  ]
+}

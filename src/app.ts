@@ -56,3 +56,4 @@ const input=$<HTMLInputElement>('file-input'),dropzone=$<HTMLDivElement>('dropzo
 $('export-button').onclick=async()=>{const data=await rows(),lines=[['文件名称','文件格式','文件时长','文件大小（字节）','文件数据帧率','帧数','SHA-256'],...data.map(r=>[r.name,r.format,duration(r.durationMs),r.size,r.fps==null?'':Number(r.fps.toFixed(6)),r.frames??'',r.sha256])].map(line=>line.map(csvCell).join(','));const url=URL.createObjectURL(new Blob(['\ufeff'+lines.join('\n')],{type:'text/csv;charset=utf-8'})),a=document.createElement('a');a.href=url;a.download='动作数据识别表.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)};
 $('clear-button').onclick=async()=>{if(confirm('确定清空当前浏览器中保存的文件和表格吗？')){await clearRows();await render();showNotice('已清空当前浏览器中的表格')}};
 void render().catch(()=>showNotice('当前浏览器不支持本地文件表，请升级浏览器后重试'));
+if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(()=>undefined));
