@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="在浏览器中自动识别 BVH、PKL、GZ、ZIP 动作文件的时长、帧率和帧数。">
+  <title>动作数据识别表</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="page-shell">
+    <nav class="topbar">
+      <div class="brand-mark">M</div>
+      <div><div class="brand-title">动作数据识别表</div><div class="brand-subtitle">BVH · PKL · GZ · ZIP</div></div>
+      <div class="topbar-status"><span></span>文件内容原样保存</div>
+    </nav>
+    <section class="hero">
+      <div class="eyebrow">MOTION FILE INDEXER</div>
+      <h1>把动作文件放进来，<br><em>数据自动成表。</em></h1>
+      <p>上传 BVH、PKL、GZ 或 ZIP 文件包，自动读取时长、帧率与帧数。所有处理均在当前浏览器完成，文件内容不会被改写。</p>
+    </section>
+    <section class="workspace-card">
+      <div id="dropzone" class="dropzone">
+        <input id="file-input" class="sr-only" type="file" accept=".bvh,.pkl,.gz,.zip" multiple>
+        <div class="upload-glyph">↑</div><h2>拖放动作文件或文件包</h2>
+        <p>支持 .bvh、.pkl、.bvh.gz、.pkl.gz、.tar.gz、.zip</p>
+        <button id="choose-button" type="button">选择文件</button>
+        <small>文件只保存在当前设备浏览器中；点击表格里的文件名称可下载原文件</small>
+      </div>
+      <div id="progress" class="progress hidden" role="status"></div>
+      <div id="notice" class="notice hidden" role="status"></div>
+      <div class="summary-strip">
+        <div><strong id="total-files">0</strong><span>文件总数</span></div>
+        <div><strong id="recognized-files">0</strong><span>识别成功</span></div>
+        <div><strong id="average-fps">—</strong><span>平均帧率</span></div>
+        <div><strong id="total-duration">00:00:00.00</strong><span>总时长</span></div>
+      </div>
+      <div class="table-head">
+        <div><h2>动作文件清单</h2><p>上传后自动更新；点击文件名称即可下载原文件</p></div>
+        <div class="actions"><button id="clear-button" class="ghost-button danger" type="button" disabled>清空本机表格</button><button id="export-button" class="ghost-button" type="button" disabled>导出 CSV</button></div>
+      </div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>文件名称</th><th>文件格式</th><th>文件时长</th><th>文件大小</th><th>文件数据帧率</th><th>帧数</th></tr></thead>
+        <tbody id="file-table"><tr><td colspan="6" class="empty">正在读取当前浏览器的文件清单…</td></tr></tbody>
+      </table></div>
+    </section>
+    <footer>浏览器本地解析 · 无需登录 · 可直接转发链接</footer>
+  </main>
+  <script src="app.js" defer></script>
+</body>
+</html>
